@@ -6,7 +6,7 @@ public class BankingApp {
         Scanner sc = new Scanner(System.in);
 
         // Create a BankAccount object with initial customer name and ID
-        BankAccount uNox = new BankAccount("Nox", "88");
+        BankAccount uNox = new BankAccount("Nox", "15");
 
         // Display the banking menu to the user
         uNox.showMenu();
@@ -23,6 +23,7 @@ class BankAccount {
     BankAccount(String custname, String custId) {
         customerName = custname;
         customerId = custId;
+        this.balance = 500;
     }
 
     // Method to deposit a specified amount into the account
@@ -56,6 +57,7 @@ class BankAccount {
     void showMenu() {
         char option = '\0';
 
+
         Scanner sc = new Scanner(System.in);
 
         // Display welcome message along with customer name and ID
@@ -70,55 +72,48 @@ class BankAccount {
 
         // Loop to keep displaying the menu until the user chooses to exit
         do {
-            System.out.println("++++++++++++++++++++++++++");
+            System.out.println("==========================");
             System.out.println("Enter the option");
-            System.out.println("+++++++++++++++++++++++++++");
-            option = sc.next().charAt(0);
-            Character.toUpperCase(option);  // This line does not modify 'option', needs assignment
+            System.out.println("==========================");
+            String answ = sc.next();
+//            option = sc.next().charAt(0);
+            Character.toLowerCase(option);  // This line does not modify 'option', needs assignment
 
             // Perform actions based on the user's chosen option
-            switch (option) {
-                case 'A':
-                    System.out.println("========================");
-                    System.out.println("Balance is " + balance);
-                    System.out.println("========================");
-                    System.out.println();
-                    break;
-
-                case 'B':
-                    System.out.println("========================");
-                    System.out.println("Enter the amount to deposit");
-                    System.out.println("========================");
-                    int amount = sc.nextInt();
-                    deposit(amount);
-                    System.out.println();
-                    break;
-
-                case 'C':
-                    System.out.println("========================");
-                    System.out.println("Enter the amount to withdraw");
-                    System.out.println("========================");
-                    int amount2 = sc.nextInt();
-                    withdraw(amount2);
-                    System.out.println();
-                    break;
-
-                case 'D':
-                    System.out.println("========================");
-                    getPreviousTransaction();
-                    System.out.println("========================");
-                    System.out.println();
-                    break;
-
-                case 'E':
-                    System.out.println("=========================");
-                    System.out.println("Thank you!");
-                    break;
-
-                default:
-                    System.out.println("Invalid option, please enter a valid option");
-                    break;
+            if (answ.equalsIgnoreCase( "a" )){
+                System.out.println("========================");
+                System.out.println("Balance is " + balance);
+                System.out.println("========================");
+                System.out.println();
             }
+            else if ( answ.equalsIgnoreCase( "b" )){
+                System.out.println("========================");
+                System.out.println("Enter the amount to deposit");
+                System.out.println("========================");
+                int amount = sc.nextInt();
+                deposit(amount);
+                System.out.println();
+            }
+            else if ( answ.equalsIgnoreCase( "c" )){
+                System.out.println("========================");
+                System.out.println("Enter the amount to withdraw");
+                System.out.println("========================");
+                int amount2 = sc.nextInt();
+                withdraw(amount2);
+                System.out.println();
+            }
+            else if ( answ.equalsIgnoreCase( "d" )){
+                System.out.println("========================");
+                getPreviousTransaction();
+                System.out.println("========================");
+                System.out.println();
+            }
+            else if(answ.equalsIgnoreCase( "e" )){
+                System.out.println("=========================");
+                System.out.println("Thank you!");
+            }
+
+
         } while (option != 'E');  // Continue looping until 'E' is chosen (Exit)
     }
 }
